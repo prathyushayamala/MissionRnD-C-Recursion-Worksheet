@@ -22,9 +22,17 @@
 
 */
 #include "stdafx.h"
-
-
+int fibo(int a, int b, int n, int s){
+	if (n == s){
+		return b;
+	}
+	else{
+		int c = a + b;
+		return fibo(b, c, n+1, s);
+	}
+}
 int get_steps(int s)
 {
-	return 0;
+	int a = 0, b = 1, n = 0;
+	return fibo(a, b, n, s);
 }

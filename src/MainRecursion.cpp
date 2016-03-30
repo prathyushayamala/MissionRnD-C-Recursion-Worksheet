@@ -4,7 +4,12 @@
 #include "FunctionHeaders.h"
 
 int main(){
-	
+	/*int inputs[6] = { 3, 5, 7, 9, 10, 12 };
+	for (int i = 0; i < 6; i++){
+		int count=get_steps(inputs[i]);
+		printf("%d", count);
+	}
+	_getch();*/
 	//Check NSnipers
 
 	//Check CountPairs Sample Code 
