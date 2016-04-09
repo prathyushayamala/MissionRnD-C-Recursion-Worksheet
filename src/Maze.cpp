@@ -34,9 +34,77 @@ more parameters .
 */
 
 #include<stdlib.h>
+#include<stdio.h>
+#include<conio.h>
 
-
+int find_path(int *maze, int rows, int columns, int index1, int index2){
+	if (index1 == index2){
+		return 1;
+	}
+	else{
+		if (index1 >= rows*columns-1){
+			if (*(maze + index1 -columns) == 1){
+				return find_path(maze, rows, columns, index1 - 2*columns, index2);
+			}
+			else{
+				if (*(maze - columns + index1-1) == 1){
+					return find_path(maze, rows, columns, index1 - columns, index2);
+				}
+				else{
+					if (*(maze - columns + index1 + 1) == 1){
+						return find_path(maze, rows, columns, index1 - columns - 1, index2);
+					}
+				}
+			}
+		}
+		else{
+			if (*(maze+ index1) == 1){
+				if (*(maze +index1+1) == 1){
+					return find_path(maze, rows, columns, index1+1,index2);
+				}
+				else{
+					if (*(maze +columns+ index1) == 1){
+						return find_path(maze, rows, columns, index1+columns,index2);
+					}
+					else{
+						if (*(maze + (columns *( index1 + 1))) == 1){
+							return find_path(maze, rows, columns, index1 + columns + 1, index2);
+						}
+						else{
+							if ((columns == 1)||(rows==1)){
+								return 0;
+							}
+							else{
+								return find_path(maze, rows, columns, index1 + columns, index2);
+							}
+						}
+					}
+				}
+			}
+			else{
+				return 0;
+			}
+		}
+	}
+}
 int path_exists(int *maze, int rows, int columns, int x1, int y1, int x2, int y2)
 {
-	return 1;
+	if ((rows > 0) && (columns > 0)){
+		if (((x1 >= 0) && (x1 < rows)) && ((x2 >= 0) && (x2 < rows)) && ((y1 >= 0) && (y1 < columns)) && ((y2 >= 0) && (y2 < columns))){
+			int index1 = x1*columns + y1, index2 = x2*columns + y2;
+			if ((*(maze + index1) == 1) && (*(maze + index2) == 1)){
+				return find_path(maze, rows, columns, index1, index2);
+			}
+			else{
+				return 0;
+			}
+		}
+		else{
+			return 0;
+		}
+	}
+	else{
+		return 0;
+	}
+	return 0;
 }
