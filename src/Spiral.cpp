@@ -33,8 +33,65 @@ Note : Check the function Parameters ,Its a double pointer .
 
 #include "stdafx.h"
 #include<stdlib.h>
-
-int *spiral(int rows, int columns, int **input_array)
-{
-	return NULL;
+int* rotate_spiral(int** input_array, int r_start, int r_end, int c_start, int c_end, int* output, int index,int total_elements){
+	int j;
+	if ((r_start == r_end) && (c_start == c_end)){
+		output[index] = input_array[r_start][c_start];
+		return output;
+	}
+	else{
+		for (j = c_start; j <= c_end; j++){
+			if (index > total_elements){
+				return output;
+			}
+			output[index] = input_array[r_start][j];
+			index++;
+		}
+		printf("\n");
+		r_start++;
+		for (j = r_start; j <= r_end; j++){
+			if (index > total_elements){
+				return output;
+			}
+			output[index] = input_array[j][c_end];
+			index++;
+		}
+		printf("\n");
+		c_end--;
+		for (j = c_end; j >= c_start; j--){
+			if (index > total_elements){
+				return output;
+			}
+			output[index] = input_array[r_end][j];
+			index++;
+		}
+		printf("\n");
+		r_end--;
+		for (j = r_end; j >= r_start; j--){
+			if (index > total_elements){
+				return output;
+			}
+			output[index] = input_array[j][c_start];
+			index++;
+		}
+		c_start++;
+		return rotate_spiral(input_array, r_start, r_end, c_start, c_end, output, index,total_elements);
+	}
 }
+int *spiral(int rows, int columns, int **input_array)
+{ 
+	if (input_array == NULL){
+		return NULL;
+	}
+	else{
+		if ((rows <= 0) || (columns <= 0)){
+		return NULL;
+		}
+		else{
+			int *output = (int*)malloc(rows*columns*sizeof(int));
+			int r_start = 0, r_end = rows - 1, c_start = 0, c_end = columns - 1,index=0;
+			output=rotate_spiral(input_array, r_start, r_end, c_start, c_end,output,index,rows*columns-1);
+			return output;
+		}
+}
+	}

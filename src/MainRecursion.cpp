@@ -3,8 +3,15 @@
 
 #include "FunctionHeaders.h"
 #include<conio.h>
+void generate_array(int **input_array, int rows, int columns, int seq)
+{
+	int k = 0;
+	for (int i = 0; i < rows; i++)
+		for (int j = 0; j < columns; j++)
+			input_array[i][j] = k++;
+}
 int main(){
-
+	
 	//Check NSnipers
 
 	//Check CountPairs Sample Code 

@@ -51,8 +51,6 @@ namespace spec
 			for (int i = 0; i < rows; i++)
 				input_array[i] = (int *)malloc(columns * sizeof(int));
 
-
-
 			generate_array((int**)input_array, rows, columns, 1);
 
 			int *output_array = spiral(-rows, columns, (int**)input_array);
