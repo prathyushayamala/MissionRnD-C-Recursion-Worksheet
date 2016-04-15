@@ -11,7 +11,16 @@ void generate_array(int **input_array, int rows, int columns, int seq)
 			input_array[i][j] = k++;
 }
 int main(){
-	
+	int n = 4;
+	int board[4][4];
+	int i = 0, j = 0;
+	for (i = 0; i < n; i++){
+		for (j = 0; j < n; j++){
+			board[i][j] = 0;
+		}
+	}
+
+	int result = solve_nsnipers(&board[0][0], n);
 	//Check NSnipers
 
 	//Check CountPairs Sample Code 
